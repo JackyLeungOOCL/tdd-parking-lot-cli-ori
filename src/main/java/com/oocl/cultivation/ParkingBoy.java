@@ -12,7 +12,9 @@ public class ParkingBoy {
     public ParkingTicket park(Car car) {
         // TODO: Please implement the method
         try {
-            return parkingLot.generateTicket(car);
+            ParkingTicket ticket = parkingLot.generateTicket(car);
+            lastErrorMessage = null;
+            return ticket;
         } catch (RuntimeException e) {
             lastErrorMessage = e.getMessage();
             return null;
@@ -22,7 +24,9 @@ public class ParkingBoy {
     public Car fetch(ParkingTicket ticket) {
         // TODO: Please implement the method
         try {
-            return parkingLot.receiveTicket(ticket);
+            Car car = parkingLot.receiveTicket(ticket);
+            lastErrorMessage = null;
+            return car;
         } catch (RuntimeException e) {
             lastErrorMessage = e.getMessage();
             return null;

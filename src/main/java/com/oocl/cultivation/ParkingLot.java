@@ -28,18 +28,18 @@ public class ParkingLot {
             throw new RuntimeException("The parking lot is full.");
         }
 
-        ParkingTicket parkingTicket = new ParkingTicket();
-        cars.put(parkingTicket, car);
+        ParkingTicket ticket = new ParkingTicket();
+        cars.put(ticket, car);
 
-        return parkingTicket;
+        return ticket;
     }
 
-    public Car receiveTicket(ParkingTicket parkingTicket) {
-        Car car = cars.get(parkingTicket);
+    public Car receiveTicket(ParkingTicket ticket) {
+        Car car = cars.get(ticket);
         if (car == null) {
             throw new RuntimeException("Unrecognized parking ticket.");
         }
-        cars.remove(parkingTicket, car);
+        cars.remove(ticket, car);
         return  car;
 //        return cars.get(parkingTicket);
     }
