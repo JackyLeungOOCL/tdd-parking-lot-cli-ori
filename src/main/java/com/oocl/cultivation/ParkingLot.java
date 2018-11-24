@@ -36,6 +36,9 @@ public class ParkingLot {
 
     public Car receiveTicket(ParkingTicket parkingTicket) {
         Car car = cars.get(parkingTicket);
+        if (car == null) {
+            throw new RuntimeException("Unrecognized parking ticket.");
+        }
         cars.remove(parkingTicket, car);
         return  car;
 //        return cars.get(parkingTicket);

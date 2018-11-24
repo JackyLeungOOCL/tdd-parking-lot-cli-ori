@@ -21,7 +21,12 @@ public class ParkingBoy {
 
     public Car fetch(ParkingTicket ticket) {
         // TODO: Please implement the method
-        return parkingLot.receiveTicket(ticket);
+        try {
+            return parkingLot.receiveTicket(ticket);
+        } catch (RuntimeException e) {
+            lastErrorMessage = e.getMessage();
+            return null;
+        }
     }
 
     public String getLastErrorMessage() {
