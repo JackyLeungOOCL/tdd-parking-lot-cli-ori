@@ -35,6 +35,9 @@ public class ParkingLot {
     }
 
     public Car receiveTicket(ParkingTicket ticket) {
+        if (ticket == null) {
+            throw new RuntimeException("Please provide your parking ticket.");
+        }
         Car car = cars.get(ticket);
         if (car == null) {
             throw new RuntimeException("Unrecognized parking ticket.");
