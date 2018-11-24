@@ -25,7 +25,7 @@ public class ParkingLot {
         int carPos = getAvailableParkingPosition();
         if (carPos <= 0) {
             // No available parking position
-            return null;
+            throw new RuntimeException("The parking lot is full.");
         }
 
         ParkingTicket parkingTicket = new ParkingTicket();

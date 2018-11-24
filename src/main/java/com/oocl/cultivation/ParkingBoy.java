@@ -11,7 +11,12 @@ public class ParkingBoy {
 
     public ParkingTicket park(Car car) {
         // TODO: Please implement the method
-        return parkingLot.generateTicket(car);
+        try {
+            return parkingLot.generateTicket(car);
+        } catch (RuntimeException e) {
+            lastErrorMessage = e.getMessage();
+            return null;
+        }
     }
 
     public Car fetch(ParkingTicket ticket) {
