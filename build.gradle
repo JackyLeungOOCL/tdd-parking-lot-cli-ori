@@ -1,6 +1,7 @@
 plugins {
     id 'java'
 }
+apply plugin: 'idea'
 
 group 'com.oocl.cultivation'
 version '1.0-SNAPSHOT'
