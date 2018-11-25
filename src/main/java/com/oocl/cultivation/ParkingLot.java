@@ -21,6 +21,10 @@ public class ParkingLot {
         return capacity - cars.size();
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
     public ParkingTicket generateTicket(Car car) {
         int carPos = getAvailableParkingPosition();
         if (carPos <= 0) {
