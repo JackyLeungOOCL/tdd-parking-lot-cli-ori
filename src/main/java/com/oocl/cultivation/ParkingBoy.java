@@ -6,7 +6,7 @@ import java.util.List;
 public class ParkingBoy {
 
 //    private final ParkingLot parkingLot;
-    private List<ParkingLot> parkingLots;
+    protected List<ParkingLot> parkingLots;
     private String lastErrorMessage;
 
     public ParkingBoy(ParkingLot parkingLot) {
