@@ -135,4 +135,35 @@ public class ParkingLotServiceManagerFacts {
                 manager.getLastErrorMessage());
     }
 
+    @Test
+    void should_query_error_message_for_used_ticket() {
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingLotServiceManager manager = new ParkingLotServiceManager(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        manager.addParkingBoy(parkingBoy);
+        Car car = new Car();
+
+        ParkingTicket ticket = manager.park(car, parkingBoy);
+        parkingBoy.fetch(ticket);
+        parkingBoy.fetch(ticket);
+
+        assertEquals(
+                "Unrecognized parking ticket.",
+                parkingBoy.getLastErrorMessage()
+        );
+    }
+
+    @Test
+    void should_get_message_if_there_is_not_enough_position() {
+        final int capacity = 1;
+        ParkingLot parkingLot = new ParkingLot(capacity);
+        ParkingLotServiceManager manager = new ParkingLotServiceManager(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        manager.addParkingBoy(parkingBoy);
+
+        manager.park(new Car(), parkingBoy);
+        manager.park(new Car(), parkingBoy);
+
+        assertEquals("The parking lot is full.", parkingBoy.getLastErrorMessage());
+    }
 }

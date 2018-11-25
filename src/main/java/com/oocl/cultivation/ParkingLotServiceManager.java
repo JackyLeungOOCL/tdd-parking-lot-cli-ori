@@ -22,14 +22,10 @@ public class ParkingLotServiceManager extends ParkingBoy {
         if (managementList.indexOf(parkingBoy) < 0) {
             throw new RuntimeException("Parking boy is not managed by this manager.");
         }
-        try {
-            ParkingTicket ticket = parkingBoy.park(car);
-            lastErrorMessage = null;
-            return ticket;
-        } catch(RuntimeException e) {
-            lastErrorMessage = e.getMessage();
-            return null;
-        }
+
+        ParkingTicket ticket = parkingBoy.park(car);
+        lastErrorMessage = parkingBoy.getLastErrorMessage();
+        return ticket;
     }
 
     public Car fetch(ParkingTicket ticket, ParkingBoy parkingBoy) {
