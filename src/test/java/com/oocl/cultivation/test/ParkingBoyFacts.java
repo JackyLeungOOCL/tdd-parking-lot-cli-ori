@@ -151,4 +151,15 @@ class ParkingBoyFacts {
 
         assertEquals("The parking lot is full.", parkingBoy.getLastErrorMessage());
     }
+
+//    @Test
+//    void should _park_cars_to_second_parking_lot_when_first_lost_is_full() {
+//        final int capacity = 1;
+//        ParkingLot parkingLot1 = new ParkingLot(capacity);
+//        ParkingLot parkingLot2 = new ParkingLot();
+//        ParkingBoy parkingBoy = new ParkingBoy(parkingLot1);
+//
+//        parkingBoy.park(new Car());
+//        parkingBoy.park(new Car());
+//    }
 }
