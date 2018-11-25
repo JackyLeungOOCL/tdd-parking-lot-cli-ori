@@ -7,7 +7,7 @@ public class ParkingBoy {
 
 //    private final ParkingLot parkingLot;
     protected List<ParkingLot> parkingLots;
-    private String lastErrorMessage;
+    protected String lastErrorMessage;
 
     public ParkingBoy(ParkingLot parkingLot) {
         parkingLots = new ArrayList<>();

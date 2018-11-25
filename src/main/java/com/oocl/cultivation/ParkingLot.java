@@ -1,20 +1,30 @@
 package com.oocl.cultivation;
 
-import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
     private final int capacity;
     private Map<ParkingTicket, Car> cars = new HashMap<>();
+    private ParkingLotServiceManager manager = null;
 
     public ParkingLot() {
         this(10);
     }
 
+    public ParkingLot(ParkingLotServiceManager manager) {
+        this();
+        this.manager = manager;
+    }
+
     public ParkingLot(int capacity) {
         this.capacity = capacity;
+        manager = null;
+    }
+
+    public ParkingLot(int capacity, ParkingLotServiceManager manager) {
+        this(capacity);
+        this.manager = manager;
     }
 
     public int getAvailableParkingPosition() {
@@ -51,5 +61,7 @@ public class ParkingLot {
 //        return cars.get(parkingTicket);
     }
 
-
+    public void changeManager(ParkingLotServiceManager manager) {
+        this.manager = manager;
+    }
 }
