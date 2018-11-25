@@ -47,10 +47,7 @@ public class ParkingLotServiceManagerFacts {
         assertEquals("Parking boy is not managed by this manager.", exception.getMessage());
     }
 
-//    @Test
-//    void should_park_cars_as_a_standard_parking_boy() {
-//
-//    }
+
     // Should park cars as a standard parking boy
 
     @Test
@@ -108,5 +105,34 @@ public class ParkingLotServiceManagerFacts {
         assertEquals(parkingLot3.getAvailableParkingPosition(), 9);
     }
 
+    // Should display errors from parking boy
+
+    @Test
+    void should_query_message_once_the_ticket_is_wrong() {
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingLotServiceManager manager = new ParkingLotServiceManager(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        manager.addParkingBoy(parkingBoy);
+        ParkingTicket wrongTicket = new ParkingTicket();
+
+        manager.fetch(wrongTicket, parkingBoy);
+        String message = parkingBoy.getLastErrorMessage();
+
+        assertEquals("Unrecognized parking ticket.", message);
+    }
+
+    @Test
+    void should_query_message_once_ticket_is_not_provided() {
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingLotServiceManager manager = new ParkingLotServiceManager(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        manager.addParkingBoy(parkingBoy);
+
+        manager.fetch(null, parkingBoy);
+
+        assertEquals(
+                "Please provide your parking ticket.",
+                manager.getLastErrorMessage());
+    }
 
 }
