@@ -6,6 +6,9 @@ import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.ParkingTicket;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyFacts {
@@ -152,14 +155,47 @@ class ParkingBoyFacts {
         assertEquals("The parking lot is full.", parkingBoy.getLastErrorMessage());
     }
 
-//    @Test
-//    void should _park_cars_to_second_parking_lot_when_first_lost_is_full() {
-//        final int capacity = 1;
-//        ParkingLot parkingLot1 = new ParkingLot(capacity);
-//        ParkingLot parkingLot2 = new ParkingLot();
-//        ParkingBoy parkingBoy = new ParkingBoy(parkingLot1);
-//
-//        parkingBoy.park(new Car());
-//        parkingBoy.park(new Car());
-//    }
+    @Test
+    void should_park_cars_to_second_parking_lot_when_first_lot_is_full() {
+        final int capacity = 1;
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        ParkingLot parkingLot1 = new ParkingLot(capacity);
+        ParkingLot parkingLot2 = new ParkingLot();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+
+        parkingBoy.park(new Car());
+        assertEquals(parkingLot1.getAvailableParkingPosition(), 0);
+        assertEquals(parkingLot2.getAvailableParkingPosition(), 10);
+        parkingBoy.park(new Car());
+        assertEquals(parkingLot1.getAvailableParkingPosition(), 0);
+        assertEquals(parkingLot2.getAvailableParkingPosition(), 9);
+    }
+
+    @Test
+    void should_park_cars_sequentially() {
+        final int capacity = 1;
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        ParkingLot parkingLot1 = new ParkingLot(capacity);
+        ParkingLot parkingLot2 = new ParkingLot(capacity);
+        ParkingLot parkingLot3 = new ParkingLot();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        parkingLots.add(parkingLot3);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+
+        parkingBoy.park(new Car());
+        assertEquals(parkingLot1.getAvailableParkingPosition(), 0);
+        assertEquals(parkingLot2.getAvailableParkingPosition(), 1);
+        assertEquals(parkingLot3.getAvailableParkingPosition(), 10);
+        parkingBoy.park(new Car());
+        assertEquals(parkingLot1.getAvailableParkingPosition(), 0);
+        assertEquals(parkingLot2.getAvailableParkingPosition(), 0);
+        assertEquals(parkingLot3.getAvailableParkingPosition(), 10);
+        parkingBoy.park(new Car());
+        assertEquals(parkingLot1.getAvailableParkingPosition(), 0);
+        assertEquals(parkingLot2.getAvailableParkingPosition(), 0);
+        assertEquals(parkingLot3.getAvailableParkingPosition(), 9);
+    }
 }
