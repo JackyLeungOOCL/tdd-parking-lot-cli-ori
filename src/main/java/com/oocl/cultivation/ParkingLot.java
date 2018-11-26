@@ -38,7 +38,6 @@ public class ParkingLot {
     public ParkingTicket generateTicket(Car car) {
         int carPos = getAvailableParkingPosition();
         if (carPos <= 0) {
-            // No available parking position
             throw new RuntimeException("The parking lot is full.");
         }
 
@@ -58,7 +57,6 @@ public class ParkingLot {
         }
         cars.remove(ticket, car);
         return car;
-//        return cars.get(parkingTicket);
     }
 
     public void changeManager(ParkingLotServiceManager manager) {
