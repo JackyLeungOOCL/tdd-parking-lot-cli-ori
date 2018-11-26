@@ -19,7 +19,7 @@ public class ParkingLotServiceManager extends ParkingBoy {
     }
 
     public ParkingTicket park(Car car, ParkingBoy parkingBoy) {
-        if (managementList.indexOf(parkingBoy) < 0) {
+        if (!managementList.contains(parkingBoy)) {
             throw new RuntimeException("Parking boy is not managed by this manager.");
         }
 
@@ -29,7 +29,7 @@ public class ParkingLotServiceManager extends ParkingBoy {
     }
 
     public Car fetch(ParkingTicket ticket, ParkingBoy parkingBoy) {
-        if (managementList.indexOf(parkingBoy) < 0) {
+        if (!managementList.contains(parkingBoy)) {
             throw new RuntimeException("Parking boy is not managed by this manager.");
         }
         Car car = parkingBoy.fetch(ticket);

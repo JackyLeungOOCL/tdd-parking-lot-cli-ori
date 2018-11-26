@@ -57,7 +57,7 @@ public class ParkingLot {
             throw new RuntimeException("Unrecognized parking ticket.");
         }
         cars.remove(ticket, car);
-        return  car;
+        return car;
 //        return cars.get(parkingTicket);
     }
 
